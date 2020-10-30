@@ -9,6 +9,6 @@
 #endif  
 
 int main() {
-  printf("Hello, my architecture is %s\n", ARCH);
+  printf("Hola, mi arquitectura es %s\n", ARCH);
   exit(0);
 }
