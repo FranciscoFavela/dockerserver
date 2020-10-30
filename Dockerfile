@@ -1,13 +1,13 @@
-FROM debian
-
-ENV DOCUMENTROOT=/var/www/html
-ENV SERVER_NAME=www.prueba.es
-
-ADD ["html/", "/tmp/html"]
-COPY run.sh /run.sh
-
-RUN apt-get update && apt install -y nginx && apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /var/www/html/
-RUN chmod +x /run.sh
-
-EXPOSE 80
-CMD ["/run.sh"]
+#
+# Dockerfile
+#
+FROM alpine AS builder 
+RUN apk add build-base 
+WORKDIR /home
+COPY hello.c .
+RUN gcc "-DARCH=\"`uname -a`\"" hello.c -o hello
+ 
+FROM alpine 
+WORKDIR /home
+COPY --from=builder /home/hello .
+ENTRYPOINT ["./hello"] 
