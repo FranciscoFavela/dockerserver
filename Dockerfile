@@ -1,5 +1,4 @@
 FROM debian
-MAINTAINER juan jose lopez roldan "jjlr1994@gmail.com"
 
 ENV DOCUMENTROOT=/var/www/html
 ENV SERVER_NAME=www.prueba.es
